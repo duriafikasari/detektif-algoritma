@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#2e9e3a">
+<title>DETEKTIF ALGORITMA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-screen="cover">
+
+<div id="boot" aria-hidden="true"><div class="boot-box"><img src="assets/kiko.webp" alt=""><p>Memuat Taman Labirin…</p></div></div>
+
+<div id="app">
+
+  <!-- =====================================================
+       1. COVER
+       ===================================================== -->
+  <section class="screen art" id="screen-cover" aria-label="Cover">
+    <div class="bgblur" style="background-image:url(assets/cover.jpg)"></div>
+    <div class="stage">
+      <img class="stage-img" src="assets/cover.jpg" alt="DETEKTIF ALGORITMA — petualangan di Taman Labirin" draggable="false">
+      <button type="button" class="hot" id="cover-sound" aria-label="Sound" aria-pressed="true" style="--x:2.09;--y:2.34;--w:13.22;--h:8.08"></button>
+      <button type="button" class="hot" id="cover-guide" aria-label="Panduan" style="--x:73.74;--y:2.34;--w:11.84;--h:8.08"></button>
+      <button type="button" class="hot" id="cover-id" aria-label="Identitas" style="--x:86.6;--y:2.34;--w:12.26;--h:8.08"></button>
+      <button type="button" class="hot hot-big" id="cover-start" aria-label="Mulai Petualangan" style="--x:33.19;--y:79.91;--w:32.12;--h:17"></button>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       2. WELCOME
+       ===================================================== -->
+  <section class="screen art" id="screen-welcome" aria-label="Selamat datang">
+    <div class="bgblur" style="background-image:url(assets/welcome.jpg)"></div>
+    <button type="button" class="btn blue back-btn" id="wlc-back">◀ KEMBALI</button>
+    <div class="stage">
+      <img class="stage-img" src="assets/welcome.jpg" alt="Selamat datang di Taman Labirin Algoritma" draggable="false">
+      <div class="bubble" id="wlc-bubble" role="status" aria-live="polite">
+        <span class="bubble-who" id="wlc-who"></span>
+        <p id="wlc-text"></p>
+      </div>
+      <div class="spot spot-arga" aria-hidden="true"></div><div class="spot spot-kiko" aria-hidden="true"></div><div class="spot spot-rima" aria-hidden="true"></div>
+      <button type="button" class="btn yellow big stage-btn" id="wlc-next" style="--x:77;--y:85;--w:20">LANJUT ▶</button>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       3. LOGIN PEMAIN
+       ===================================================== -->
+  <section class="screen art" id="screen-login" aria-label="Login pemain">
+    <div class="bgblur" style="background-image:url(assets/login.jpg)"></div>
+    <div class="stage">
+      <img class="stage-img" src="assets/login.jpg" alt="" draggable="false">
+      <div class="login-banner" aria-hidden="true"></div>
+      <form id="login-form" class="login-form" autocomplete="off" novalidate>
+        <div class="login-title">MASUK PETUALANGAN</div>
+        <label class="fld f-name" for="in-name"><span class="fld-lbl">NAMA</span>
+          <input id="in-name" type="text" maxlength="30" placeholder="Tulis namamu di sini ..." autocomplete="off" autocapitalize="words" enterkeyhint="next"></label>
+        <label class="fld f-class" for="in-class"><span class="fld-lbl">KELAS</span>
+          <select id="in-class"><option value="" selected disabled>Pilih kelasmu ...</option></select></label>
+        <label class="fld f-school" for="in-school"><span class="fld-lbl">SEKOLAH</span>
+          <input id="in-school" type="text" maxlength="40" placeholder="Tulis nama sekolahmu ..." autocomplete="off" autocapitalize="words" enterkeyhint="done"></label>
+        <div class="login-err" id="login-err" role="alert"></div>
+        <button type="button" class="hot hot-big login-go" id="login-start" aria-label="Mulai">
+          <span class="login-go-txt">▶ MULAI</span></button>
+      </form>
+      <div class="login-chars" aria-hidden="true"><img src="assets/arga.webp" alt=""><img class="k" src="assets/kiko.webp" alt=""><img src="assets/rima.webp" alt=""></div>
+    </div>
+    <button type="button" class="btn blue back-btn" id="login-back">◀ KEMBALI</button>
+  </section>
+
+  <!-- =====================================================
+       4. PETA MISI
+       ===================================================== -->
+  <section class="screen art" id="screen-map" aria-label="Peta misi">
+    <div class="bgblur" style="background-image:url(assets/peta.jpg)"></div>
+    <div class="stage">
+      <img class="stage-img" src="assets/peta.jpg" alt="Peta Misi Taman Labirin" draggable="false">
+
+      <button type="button" class="hot hot-mission" id="hot-m1" style="--x:8.97;--y:35.1;--w:26.3;--h:50.5;--bx:19%;--by:79%;--sx:93%;--sy:72%">
+        <span class="hot-lock">🔒</span><span class="hot-check">✔</span><span class="hot-stars"></span></button>
+      <button type="button" class="hot hot-mission" id="hot-m2" style="--x:38.6;--y:19.7;--w:26.3;--h:33.5;--bx:19%;--by:73%;--sx:92%;--sy:63%">
+        <span class="hot-lock">🔒</span><span class="hot-check">✔</span><span class="hot-stars"></span></button>
+      <button type="button" class="hot hot-mission" id="hot-m3" style="--x:65.2;--y:46.2;--w:29.3;--h:39.3;--bx:12%;--by:74%;--sx:96%;--sy:66%">
+        <span class="hot-lock">🔒</span><span class="hot-check">✔</span><span class="hot-stars"></span></button>
+
+      <div class="map-hud">
+        <div class="map-hud-txt" id="map-hud"></div>
+        <div class="map-progress"><div class="map-progress-fill" id="map-progress-fill"></div><span id="map-progress-label"></span></div>
+      </div>
+      <button type="button" class="btn yellow big stage-btn" id="map-result" hidden style="--x:38;--y:90;--w:24">🏆 LIHAT HASIL</button>
+    </div>
+    <button type="button" class="btn blue back-btn" id="map-back">◀ KEMBALI</button>
+  </section>
+
+  <!-- =====================================================
+       5-7. ARENA MISI (dipakai bersama Misi 1, 2, dan 3)
+       ===================================================== -->
+  <section class="screen play" id="screen-play" aria-label="Misi" data-mission="1">
+    <div class="play-bg"></div>
+    <header class="play-top">
+      <button type="button" class="btn blue small" id="play-back">◀ KEMBALI</button>
+      <div class="mission-chip"><span class="num" id="play-num">1</span><span class="ttl" id="play-title">DETEKTIF URUTAN</span></div>
+      <div class="play-hud" id="play-score"></div>
+      <button type="button" class="sound-btn" id="play-sound" aria-label="Suara">🔊</button>
+    </header>
+    <p class="mission-hint" id="play-mission-hint"></p>
+
+    <main class="play-main">
+      <div class="col-left">
+        <div class="arena-wrap"><div class="arena" id="arena">
+          <img class="arena-img" src="assets/arena.jpg" alt="Arena labirin taman: Kiko berangkat dari MULAI menuju TUJUAN" draggable="false">
+          <div class="arena-layer" id="arena-trail"></div>
+          <div class="kiko" id="kiko">
+            <div class="kiko-bubble" id="kiko-bubble"></div>
+            <img class="kiko-img" src="assets/kiko.webp" alt="Kiko" draggable="false">
+          </div>
+          <div class="arena-layer" id="arena-fx"></div>
+        </div></div>
+        <div class="run-progress" id="run-progress">
+          <div class="run-bar"><div class="run-fill" id="run-fill"></div></div>
+          <span class="run-label" id="run-label">Langkah 0 / 0</span>
+        </div>
+        <section class="board code-board">
+          <div class="board-head"><b id="code-title">KODE-MU</b><span class="count" id="code-count"></span></div>
+          <div class="slots" id="slots"></div>
+          <p class="board-note" id="code-note"></p>
+        </section>
+      </div>
+
+      <aside class="col-right">
+        <div class="coach">
+          <img class="coach-img" id="coach-img" src="assets/kiko.webp" alt="" data-who="kiko">
+          <div class="coach-bubble" id="coach-text"></div>
+        </div>
+        <section class="board cards-board" id="cards-board">
+          <div class="board-head"><b id="cards-title">KARTU ARAH</b></div>
+          <div id="pool-zone" class="pool-zone"><div class="pool" id="pool"></div></div>
+        </section>
+        <div class="actions">
+          <button type="button" class="btn pink" id="btn-reset">↺ RESET</button>
+          <button type="button" class="btn yellow" id="btn-check">✔ CEK KODE</button>
+          <button type="button" class="btn blue" id="btn-route" hidden>🧭 CEK RUTE</button>
+          <button type="button" class="btn green" id="btn-run" hidden>▶ JALANKAN</button>
+          <button type="button" class="btn ghost small" id="btn-speed">🚶 NORMAL</button>
+        </div>
+      </aside>
+    </main>
+  </section>
+
+  <!-- =====================================================
+       8. HASIL AKHIR
+       ===================================================== -->
+  <section class="screen result" id="screen-result" aria-label="Hasil akhir">
+    <div class="bgblur strong" style="background-image:url(assets/peta.jpg)"></div>
+    <div class="result-wrap">
+      <img class="res-char left" src="assets/arga.webp" alt="Arga" draggable="false">
+      <img class="res-char right" src="assets/rima.webp" alt="Rima" draggable="false">
+      <div class="res-card">
+        <div class="ribbon"><span id="res-title">HASIL AKHIR</span></div>
+        <div class="res-player">
+          <div><small>NAMA</small><b id="res-name"></b></div>
+          <div><small>KELAS</small><b id="res-class"></b></div>
+          <div><small>SEKOLAH</small><b id="res-school"></b></div>
+        </div>
+        <div class="res-main">
+          <div class="res-scorebox">
+            <small>TOTAL SKOR</small>
+            <div class="res-score"><b id="res-score">0</b><span id="res-score-max"></span></div>
+            <div class="stars9" id="res-stars"></div>
+            <small id="res-stars-label"></small>
+          </div>
+          <ul class="res-missions" id="res-missions"></ul>
+        </div>
+        <div class="res-badges" id="res-badges"></div>
+        <div class="res-actions">
+          <button type="button" class="btn yellow big" id="res-cert">🎓 LIHAT SERTIFIKAT</button>
+          <button type="button" class="btn blue" id="res-map">🗺 KEMBALI KE PETA</button>
+          <button type="button" class="btn pink" id="res-again">↻ MAIN LAGI</button>
+        </div>
+      </div>
+      <img class="res-char mid" src="assets/kiko.webp" alt="Kiko" draggable="false">
+    </div>
+  </section>
+
+  <!-- =====================================================
+       9. SERTIFIKAT
+       ===================================================== -->
+  <section class="screen cert-screen" id="screen-cert" aria-label="Sertifikat">
+    <div class="bgblur strong" style="background-image:url(assets/welcome.jpg)"></div>
+    <div class="cert-toolbar">
+      <button type="button" class="btn blue" id="cert-back">◀ KEMBALI</button>
+      <button type="button" class="btn yellow big" id="cert-print">🖨 DOWNLOAD / CETAK SERTIFIKAT</button>
+    </div>
+    <div class="cert-box" id="cert-box">
+      <div class="cert-scale" id="cert-scale">
+        <div class="cert" id="cert">
+          <div class="cert-frame"></div>
+          <div class="cert-frame2"></div>
+          <div class="cert-corner tl"></div><div class="cert-corner tr"></div>
+          <div class="cert-corner bl"></div><div class="cert-corner br"></div>
+          <div class="cert-hedge"></div>
+
+          <div class="cert-inner">
+            <div class="cert-kicker">TAMAN LABIRIN ALGORITMA</div>
+            <h1 class="cert-title">SERTIFIKAT <span>DETEKTIF ALGORITMA</span></h1>
+            <div class="cert-given">Diberikan kepada:</div>
+            <div class="cert-name" id="cert-name"></div>
+            <div class="cert-meta"><span>Kelas: <b id="cert-class"></b></span><i></i><span>Sekolah: <b id="cert-school"></b></span></div>
+            <p class="cert-text">Atas keberhasilan menyelesaikan tiga misi di Taman Labirin dan menunjukkan kemampuan menyusun, menjalankan, serta menemukan alternatif algoritma.</p>
+            <div class="cert-stats">
+              <div><small>TOTAL SKOR</small><b id="cert-score"></b></div>
+              <div><small>BINTANG</small><b>⭐ <span id="cert-stars"></span></b></div>
+              <div><small>TANGGAL</small><b id="cert-date"></b></div>
+            </div>
+            <div class="cert-dev">Gim edukasi oleh <span id="cert-dev"></span></div>
+          </div>
+
+          <div class="cert-seal" aria-hidden="true">
+            <svg viewBox="0 0 120 120">
+              <defs><radialGradient id="sealg" cx="40%" cy="35%"><stop offset="0" stop-color="#ffe680"/><stop offset="1" stop-color="#f0a800"/></radialGradient></defs>
+              <path d="M60 4 l9 10 13-4 5 13 14 1 -1 14 12 7 -8 12 8 12 -12 7 1 14 -14 1 -5 13 -13-4 -9 10 -9-10 -13 4 -5-13 -14-1 1-14 -12-7 8-12 -8-12 12-7 -1-14 14-1 5-13 13 4z" fill="url(#sealg)" stroke="#c98100" stroke-width="2"/>
+              <circle cx="60" cy="60" r="34" fill="#1f5fd8" stroke="#fff" stroke-width="4"/>
+              <circle cx="56" cy="56" r="15" fill="#bfe6ff" stroke="#fff" stroke-width="5"/>
+              <path d="M67 67 l16 16" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
+              <text x="56" y="62" text-anchor="middle" font-size="15" font-weight="900" fill="#1f5fd8" font-family="Arial,sans-serif">&lt;/&gt;</text>
+            </svg>
+          </div>
+          <img class="cert-char arga" src="assets/arga.webp" alt="" draggable="false">
+          <img class="cert-char kiko" src="assets/kiko.webp" alt="" draggable="false">
+          <img class="cert-char rima" src="assets/rima.webp" alt="" draggable="false">
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /#app -->
+
+<button type="button" class="sound-btn global" id="hud-sound" aria-label="Suara" aria-pressed="true">🔊</button>
+<div id="rotate-hint" role="note">↻ Putar layar ke mode mendatar agar tampilan lebih besar <button type="button" id="rotate-hint-close" aria-label="Tutup">✕</button></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<div id="modal-root"></div>
+<canvas id="fx-canvas"></canvas>
+
+<script src="js/config.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/state.js"></script>
+<script src="js/score.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/cards.js"></script>
+<script src="js/robot.js"></script>
+<script src="js/play.js"></script>
+<script src="js/certificate.js"></script>
+<script src="js/screens.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
